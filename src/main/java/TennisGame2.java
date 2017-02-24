@@ -6,93 +6,105 @@ public class TennisGame2 implements TennisGame
     
     public String convertToLiteralPlayer1Points = "";
     public String convertToLiteralPlayer2Points = "";
+    
     public TennisGame2(String player1Name, String player2Name) {}
 
     public String getScore(){
         String score = "";
-        if (player1Points == player2Points && player1Points < 4)
+        int player1Points2 = player1Points;
+		int player2Points2 = player2Points;
+		if (player1Points2 == player2Points2 && player1Points2 < 4)
         {
-            if (player1Points==0)
+            if (player1Points2==0)
                 score = "Love";
-            if (player1Points==1)
+            if (player1Points2==1)
                 score = "Fifteen";
-            if (player1Points==2)
+            if (player1Points2==2)
                 score = "Thirty";
             score += "-All";
         }
-        if (player1Points==player2Points && player1Points>=3)
+        if (player1Points2==player2Points2 && player1Points2>=3)
             score = "Deuce";
         
-        if (player1Points > 0 && player2Points==0)
+        if (player1Points2 > 0 && player2Points2==0)
         {
-            if (player1Points==1)
+            if (player1Points2==1)
                 convertToLiteralPlayer1Points = "Fifteen";
-            if (player1Points==2)
+            if (player1Points2==2)
                 convertToLiteralPlayer1Points = "Thirty";
-            if (player1Points==3)
+            if (player1Points2==3)
                 convertToLiteralPlayer1Points = "Forty";
             
             convertToLiteralPlayer2Points = "Love";
             score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
         }
-        if (player2Points > 0 && player1Points==0)
+        if (player2Points2 > 0 && player1Points2==0)
         {
-            if (player2Points==1)
+            if (player2Points2==1)
                 convertToLiteralPlayer2Points = "Fifteen";
-            if (player2Points==2)
+            if (player2Points2==2)
                 convertToLiteralPlayer2Points = "Thirty";
-            if (player2Points==3)
+            if (player2Points2==3)
                 convertToLiteralPlayer2Points = "Forty";
             
             convertToLiteralPlayer1Points = "Love";
             score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
         }
         
-        if (player1Points>player2Points && player1Points < 4)
+        if (player1Points2>player2Points2 && player1Points2 < 4)
         {
-            if (player1Points==2)
+            if (player1Points2==2)
                 convertToLiteralPlayer1Points="Thirty";
-            if (player1Points==3)
+            if (player1Points2==3)
                 convertToLiteralPlayer1Points="Forty";
-            if (player2Points==1)
+            if (player2Points2==1)
                 convertToLiteralPlayer2Points="Fifteen";
-            if (player2Points==2)
+            if (player2Points2==2)
                 convertToLiteralPlayer2Points="Thirty";
             score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
         }
-        if (player2Points>player1Points && player2Points < 4)
+        if (player2Points2>player1Points2 && player2Points2 < 4)
         {
-            if (player2Points==2)
+            if (player2Points2==2)
                 convertToLiteralPlayer2Points="Thirty";
-            if (player2Points==3)
+            if (player2Points2==3)
                 convertToLiteralPlayer2Points="Forty";
-            if (player1Points==1)
+            if (player1Points2==1)
                 convertToLiteralPlayer1Points="Fifteen";
-            if (player1Points==2)
+            if (player1Points2==2)
                 convertToLiteralPlayer1Points="Thirty";
             score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
         }
         
-        if (player1Points > player2Points && player2Points >= 3)
+        score = playerAdvantage(score, player1Points2, player2Points2);        
+        score = winForPlayer1OrPlayer2(score, player1Points2, player2Points2);
+        return score;
+    }
+
+	private String winForPlayer1OrPlayer2(String score, int player1Points2, int player2Points2) {
+		if (player1Points2>=4 && player2Points2>=0 && (player1Points2-player2Points2)>=2)
+        {
+            score = "Win for player1";
+        }
+        if (player2Points2>=4 && player1Points2>=0 && (player2Points2-player1Points2)>=2)
+        {
+            score = "Win for player2";
+        }
+		return score;
+	}
+
+	private String playerAdvantage(String score, int player1Points2, int player2Points2) {
+		if (player1Points2 > player2Points2 && player2Points2 >= 3)
         {
             score = "Advantage player1";
         }
         
-        if (player2Points > player1Points && player1Points >= 3)
+        if (player2Points2 > player1Points2 && player1Points2 >= 3)
         {
             score = "Advantage player2";
         }
-        
-        if (player1Points>=4 && player2Points>=0 && (player1Points-player2Points)>=2)
-        {
-            score = "Win for player1";
-        }
-        if (player2Points>=4 && player1Points>=0 && (player2Points-player1Points)>=2)
-        {
-            score = "Win for player2";
-        }
-        return score;
-    }
+		return score;
+	}
     
     public void setPlayer1Score(int number){
         
