@@ -24,28 +24,40 @@ public class TennisGame2 implements TennisGame
 	private String winingPlayerIsNotDeuce(String score, int player1Points2, int player2Points2) {
 		if (player1Points2>player2Points2 && player1Points2 < 4)
         {
-            if (player1Points2==2)
-                convertToLiteralPlayer1Points="Thirty";
-            if (player1Points2==3)
-                convertToLiteralPlayer1Points="Forty";
-            if (player2Points2==1)
-                convertToLiteralPlayer2Points="Fifteen";
-            if (player2Points2==2)
-                convertToLiteralPlayer2Points="Thirty";
-            score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
+            score = thirty_forty_or_fifteen_for_player1(player1Points2, player2Points2);
         }
         if (player2Points2>player1Points2 && player2Points2 < 4)
         {
-            if (player2Points2==2)
-                convertToLiteralPlayer2Points="Thirty";
-            if (player2Points2==3)
-                convertToLiteralPlayer2Points="Forty";
-            if (player1Points2==1)
-                convertToLiteralPlayer1Points="Fifteen";
-            if (player1Points2==2)
-                convertToLiteralPlayer1Points="Thirty";
-            score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
+            score = thirty_forty_or_fifteen_for_player2(player1Points2,	player2Points2);
         }
+		return score;
+	}
+
+	private String thirty_forty_or_fifteen_for_player2(int player1Points2, int player2Points2) {
+		String score;
+		if (player2Points2==2)
+		    convertToLiteralPlayer2Points="Thirty";
+		if (player2Points2==3)
+		    convertToLiteralPlayer2Points="Forty";
+		if (player1Points2==1)
+		    convertToLiteralPlayer1Points="Fifteen";
+		if (player1Points2==2)
+		    convertToLiteralPlayer1Points="Thirty";
+		score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
+		return score;
+	}
+
+	private String thirty_forty_or_fifteen_for_player1(int player1Points2, int player2Points2) {
+		String score;
+		if (player1Points2==2)
+		    convertToLiteralPlayer1Points="Thirty";
+		if (player1Points2==3)
+		    convertToLiteralPlayer1Points="Forty";
+		if (player2Points2==1)
+		    convertToLiteralPlayer2Points="Fifteen";
+		if (player2Points2==2)
+		    convertToLiteralPlayer2Points="Thirty";
+		score = convertToLiteralPlayer1Points + "-" + convertToLiteralPlayer2Points;
 		return score;
 	}
 
